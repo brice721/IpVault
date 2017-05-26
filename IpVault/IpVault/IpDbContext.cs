@@ -24,6 +24,13 @@ namespace IpVault
             return StoredIp.Where(x => x.IpAddress != null).ToList();
         }
 
+        public string IpAddress { get; private set; }
+
+        public List<IpEntity> GetIp(string IpAddress)
+        {
+            return StoredIp.Where(x => x.IpAddress == IpAddress).ToList();
+        }
+
         protected static string GeneratedConString()
         {
             NameValueCollection appConfig = ConfigurationManager.AppSettings;
