@@ -1,0 +1,42 @@
+﻿@model IpVault.Models.IpVaultViewModel
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h1 style="text-align:center">IP Vault</h1>
+<h2 style="text-align:center">The vault for storing information about IP addresses for easy whitelisting</h2>
+<div style="height: 150px"></div>
+<section class="container" id="IpUplaod">
+    <div class="row">
+        @using (Html.BeginForm("IpPost", "IpVault", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "", role = "form" }))
+            {
+            <h2>Add Ip Address</h2>
+            <div class="form-group">
+                @Html.LabelFor(m => m.IpProvider, new { @class = "control-label" })
+                @Html.TextBoxFor(m => m.IpProvider, new { @class = "form-control"})
+                @*<label class="control-label">IP Provider</label>
+                <input class="form-control" name="idProvider" type="text" value="" />*@
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.IpAddress, new { @class = "control-label" })
+                @Html.TextBoxFor(m => m.IpAddress, new { @class = "form-control" })
+                @*<label class="control-label">IP Address</label>
+                <input class="form-control" name="idAddress" type="text" value="" />*@
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.AttachedSite, new { @class = "control-label" })
+                @Html.TextBoxFor(m => m.AttachedSite, new { @class = "form-control" })
+                @*<label class="control-label">Attached Site</label>
+                <input class="form-control" name="attachedSite" type="text" value="" />*@
+            </div>
+            <div class="form-group">
+                <label class="control-label"></label>
+                <input class="btn btn-primary form-control" type="submit" value="Submit" /> 
+            </div>
+        }
+
+    </div>
+</section>
+<div style="height: 150px"></div>
+

@@ -1,0 +1,65 @@
+﻿using System;
+using System.Data.Entity;
+using System.Data.SqlClient;
+using System.Linq;
+
+namespace Mtg.Web.MyService.Library
+{
+    public static class Ext
+    {
+        private static string GetProcedureParamString(this SqlParameter[] parameters, string procName)
+        {
+            return $"{procName} {string.Join(",", parameters.Select(x => x.ParameterName))}";
+        }
+
+        public static TResult ExecProc<TResult, TContext>(this SqlParameter[] parameters, string procName)
+            where TContext : DbContext, IDisposable, new()
+        {
+            using (var ctx = Activator.CreateInstance<TContext>())
+            {
+                try
+                {
+                    return ctx.Database.SqlQuery<TResult>(parameters.GetProcedureParamString(procName), parameters).First();
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+        }
+
+    }
+
+    public static class FormatExtensions
+    {
+        public static string _FormatPhone(object phonevalue)
+        {
+            string returnPhone = "Format Err#";
+
+            Int64 phoneDigits;
+            string phoneNumber = phonevalue.ToString();
+
+            if (Int64.TryParse(phoneNumber, out phoneDigits))
+            {
+                if (phoneNumber.Length == 10)
+                {
+                    return phoneDigits.ToString("(###) ###-####");
+                }
+                else if (phoneNumber.Length > 10)
+                {
+                    // determine the length of placeholders needed for the format
+                    string format = "(###) ###-#### x"
+                                        + new string('#', phoneNumber.Length - 10);
+                    return phoneDigits.ToString(format);
+                }
+                else
+                {
+                    return phoneNumber;
+                }
+            }
+
+            return returnPhone;
+        }
+    }
+
+}

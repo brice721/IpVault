@@ -1,0 +1,30 @@
+﻿@using WebMatrix.Data
+@model IpVault.Models.IpVaultViewModel
+@{
+    ViewBag.Title = "VaultView";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var db = Database.Open("VaultConnection");
+    var query = "SELECT * FROM IpVault";
+}
+
+<h1 style="text-align: center">Your Vault View</h1>
+
+
+@* I dont want to use razor to do this. Figure out a better way once app is working. *@
+<table border="2" width="100%">
+    <tr>
+        <th style="text-align: center">Ip Provider</th>
+        <th style="text-align: center">Ip Address</th>
+        <th style="text-align: center">Attached Site</th>
+    </tr>
+    @foreach (var row in db.Query(query))
+    {
+        <tr>
+            <td style="text-align: center; width: 120px">@row.IpProvider</td>
+            <td style="text-align: center; width: 120px">@row.IpAddress</td>
+            <td style="text-align: center; width: 120px">@row.AttachedSite</td>
+        </tr>
+    }
+</table>
+
