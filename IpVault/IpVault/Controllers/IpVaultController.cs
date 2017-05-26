@@ -92,5 +92,6 @@ namespace IpVault.Controllers
 
             return Json(ipResults, JsonRequestBehavior.AllowGet);
         }
+
     }
 }

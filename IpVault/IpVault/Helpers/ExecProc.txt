@@ -63,3 +63,26 @@ namespace Mtg.Web.MyService.Library
     }
 
 }
+
+default form for adding IP.  Uncomment regular labels and inputs when switching to angular.
+
+<div class="row">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.IpProvider, new { @class = "control-label" })
+                                @Html.TextBoxFor(m => m.IpProvider, new { @class = "form-control" })
+                                @*<label class="control-label">IP Provider</label>
+                                    <input class="form-control" name="idProvider" type="text" value="" />*@
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.IpAddress, new { @class = "control-label" })
+                                @Html.TextBoxFor(m => m.IpAddress, new { @class = "form-control" })
+                                @*<label class="control-label">IP Address</label>
+                                    <input class="form-control" name="idAddress" type="text" value="" />*@
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.AttachedSite, new { @class = "control-label" })
+                                @Html.TextBoxFor(m => m.AttachedSite, new { @class = "form-control" })
+                                @*<label class="control-label">Attached Site</label>
+                                    <input class="form-control" name="attachedSite" type="text" value="" />*@
+                            </div>
+                        </div>
