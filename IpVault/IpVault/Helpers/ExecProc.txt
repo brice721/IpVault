@@ -3,7 +3,7 @@ using System.Data.Entity;
 using System.Data.SqlClient;
 using System.Linq;
 
-namespace Mtg.Web.MyService.Library
+namespace Library
 {
     public static class Ext
     {
